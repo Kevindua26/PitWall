@@ -3,7 +3,7 @@
 
 PITWALL is a comprehensive, modern web application designed for Formula 1 fans and analysts. It aggregates real-time schedules, driver standings, constructor strategies, and features a neural prediction engine—all presented through a futuristic "Command Center" UI and stunning 3D graphics.
 
-![PITWALL Hero](public/ferrari_sf24.png)
+<!-- ![PITWALL Hero](public/ferrari_sf24.png) -->
 
 ## ✨ Features
 - **Immersive 3D Experience**: A high-fidelity, interactive 3D model of an F1 car built procedurally using Three.js and animated with GSAP ScrollTrigger.
