@@ -1,0 +1,189 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --f1-red:    #E8002D;
+  --f1-dark:   #0A0A0F;
+  --f1-carbon: #141418;
+  --f1-panel:  #1C1C22;
+  --f1-silver: #C0C0C8;
+  --f1-gold:   #FFD700;
+  --f1-white:  #F5F5F5;
+}
+
+/* ── Base ────────────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background-color: var(--f1-dark);
+  color: var(--f1-white);
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--f1-carbon); }
+::-webkit-scrollbar-thumb { background: var(--f1-red); border-radius: 3px; }
+
+/* ── Utilities ───────────────────────────────────────────────────────────── */
+.glow-red    { box-shadow: 0 0 24px rgba(232,0,45,0.45); }
+.glow-text   { text-shadow: 0 0 20px rgba(232,0,45,0.7); }
+.carbon-bg   { background: repeating-conic-gradient(#141418 0% 25%, #161619 0% 50%) 0 0 / 8px 8px; }
+.panel       { background: var(--f1-panel); border: 1px solid rgba(255,255,255,0.07); border-radius: 12px; }
+.red-border  { border-left: 3px solid var(--f1-red); }
+.gradient-text {
+  background: linear-gradient(135deg, var(--f1-red), #FF6B6B);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.section-title {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 900;
+  letter-spacing: -0.02em;
+}
+
+/* ── Glass card ──────────────────────────────────────────────────────────── */
+.glass {
+  background: rgba(20, 20, 24, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 16px;
+}
+
+/* ── Animated red line ───────────────────────────────────────────────────── */
+.red-line {
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--f1-red), transparent);
+  animation: scanLine 3s linear infinite;
+}
+@keyframes scanLine {
+  0%   { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* ── Speed lines ─────────────────────────────────────────────────────────── */
+.speed-lines {
+  position: absolute; inset: 0; overflow: hidden; pointer-events: none;
+}
+.speed-lines::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: repeating-linear-gradient(
+    90deg,
+    transparent 0px, transparent 80px,
+    rgba(232,0,45,0.03) 80px, rgba(232,0,45,0.03) 82px
+  );
+}
+
+/* ── Pill badge ──────────────────────────────────────────────────────────── */
+.badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 4px 12px; border-radius: 999px; font-size: 0.75rem;
+  font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase;
+}
+.badge-red    { background: rgba(232,0,45,0.15); color: var(--f1-red); border: 1px solid rgba(232,0,45,0.3); }
+.badge-gold   { background: rgba(255,215,0,0.12); color: var(--f1-gold); border: 1px solid rgba(255,215,0,0.3); }
+.badge-green  { background: rgba(34,200,80,0.12); color: #22C850; border: 1px solid rgba(34,200,80,0.3); }
+.badge-silver { background: rgba(192,192,200,0.12); color: var(--f1-silver); border: 1px solid rgba(192,192,200,0.2); }
+
+/* ── Buttons ─────────────────────────────────────────────────────────────── */
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--f1-red); color: white;
+  padding: 12px 28px; border-radius: 8px;
+  font-weight: 700; font-size: 0.9rem; letter-spacing: 0.04em;
+  border: none; cursor: pointer; transition: all 0.25s ease;
+  text-decoration: none;
+}
+.btn-primary:hover {
+  background: #FF1A3E;
+  box-shadow: 0 8px 30px rgba(232,0,45,0.45);
+  transform: translateY(-1px);
+}
+.btn-ghost {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: transparent; color: var(--f1-white);
+  padding: 11px 26px; border-radius: 8px;
+  font-weight: 600; font-size: 0.9rem;
+  border: 1px solid rgba(255,255,255,0.15); cursor: pointer;
+  transition: all 0.25s ease; text-decoration: none;
+}
+.btn-ghost:hover {
+  border-color: var(--f1-red); color: var(--f1-red);
+  background: rgba(232,0,45,0.06);
+}
+
+/* ── Table ───────────────────────────────────────────────────────────────── */
+.f1-table { width: 100%; border-collapse: collapse; }
+.f1-table th {
+  background: rgba(232,0,45,0.08);
+  color: var(--f1-red); font-size: 0.7rem; letter-spacing: 0.08em;
+  text-transform: uppercase; padding: 12px 16px; text-align: left;
+  border-bottom: 1px solid rgba(232,0,45,0.2);
+}
+.f1-table td { padding: 13px 16px; border-bottom: 1px solid rgba(255,255,255,0.04); font-size: 0.9rem; }
+.f1-table tr:last-child td { border-bottom: none; }
+.f1-table tr:hover td { background: rgba(255,255,255,0.02); }
+
+/* ── Position medals ─────────────────────────────────────────────────────── */
+.pos-1 { color: var(--f1-gold); font-weight: 800; }
+.pos-2 { color: #C0C0C8; font-weight: 700; }
+.pos-3 { color: #CD7F32; font-weight: 700; }
+
+/* ── Countdown ───────────────────────────────────────────────────────────── */
+.countdown-box {
+  background: var(--f1-carbon); border: 1px solid rgba(232,0,45,0.2);
+  border-radius: 10px; padding: 16px 20px; min-width: 70px;
+  text-align: center;
+}
+.countdown-number { font-size: 2rem; font-weight: 900; color: var(--f1-red); line-height: 1; font-family: 'JetBrains Mono', monospace; }
+.countdown-label  { font-size: 0.65rem; color: var(--f1-silver); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 4px; }
+
+/* ── Team color dot ──────────────────────────────────────────────────────── */
+.team-dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
+
+/* ── Loading shimmer ─────────────────────────────────────────────────────── */
+.shimmer {
+  background: linear-gradient(90deg, var(--f1-carbon) 25%, #1e1e24 50%, var(--f1-carbon) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 8px;
+}
+@keyframes shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position:  200% 0; }
+}
+
+/* ── Page transitions ────────────────────────────────────────────────────── */
+.page-enter { opacity: 0; transform: translateY(20px); }
+.page-enter-active { opacity: 1; transform: translateY(0); transition: all 0.4s ease; }
+
+/* ── Radar chart canvas ──────────────────────────────────────────────────── */
+canvas { max-width: 100%; }
+
+/* ── Form inputs ─────────────────────────────────────────────────────────── */
+.f1-input {
+  width: 100%; background: var(--f1-carbon);
+  border: 1px solid rgba(255,255,255,0.1); border-radius: 8px;
+  padding: 12px 16px; color: var(--f1-white); font-size: 0.95rem;
+  transition: border-color 0.2s ease; outline: none;
+}
+.f1-input:focus { border-color: var(--f1-red); box-shadow: 0 0 0 3px rgba(232,0,45,0.12); }
+.f1-input::placeholder { color: var(--f1-silver); opacity: 0.6; }
+
+/* ── Select ──────────────────────────────────────────────────────────────── */
+.f1-select {
+  background: var(--f1-carbon); border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 8px; padding: 10px 14px; color: var(--f1-white);
+  font-size: 0.9rem; cursor: pointer; outline: none;
+}
+.f1-select:focus { border-color: var(--f1-red); }
+.f1-select option { background: var(--f1-carbon); }
